@@ -1,9 +1,9 @@
 package com.softarc.eternal.holiday.repository;
 
-import jakarta.data.repository.CrudRepository;
-import jakarta.data.repository.Repository;
+import io.quarkus.hibernate.orm.panache.PanacheRepository;
 import com.softarc.eternal.holiday.entity.Holiday;
+import jakarta.enterprise.context.ApplicationScoped;
 
-@Repository
-public interface HolidayRepository extends CrudRepository<Holiday, Long> {
+@ApplicationScoped
+public class HolidayRepository implements PanacheRepository<Holiday> {
 }

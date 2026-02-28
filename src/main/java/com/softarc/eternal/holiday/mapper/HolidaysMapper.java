@@ -5,8 +5,9 @@ import com.softarc.eternal.holiday.entity.Holiday;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-@Mapper(componentModel = "cdi")
+@Mapper(config = QuarkusMappingConfig.class)
 public interface HolidaysMapper {
-    @Mapping(target = "hasCover", expression = "java(holidayEntity.getCoverPath() != null)")
-    Holiday holidayToHolidayDTO(HolidayDTO holiday);
+    Holiday holidayDTOToHoliday(HolidayDTO holidayDTO);
+    @Mapping(target = "coverPath", expression = "java(holiday.getCoverPath() != null)")
+    HolidayDTO holidayToHolidayDTO(Holiday holiday);
 }

@@ -1,15 +1,14 @@
 package com.softarc.eternal.holiday.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.util.Optional;
 
 @Entity
+@Table
 public class Holiday {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     long id;
 
     String name;

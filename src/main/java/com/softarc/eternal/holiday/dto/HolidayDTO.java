@@ -4,5 +4,5 @@ public record HolidayDTO(
         Long id,
         String name,
         String description,
-        Boolean hasCover) {
+        Boolean coverPath) {
 }
