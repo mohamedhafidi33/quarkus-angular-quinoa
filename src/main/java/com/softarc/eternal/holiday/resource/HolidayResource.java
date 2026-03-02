@@ -1,11 +1,13 @@
 package com.softarc.eternal.holiday.resource;
 
 import com.softarc.eternal.holiday.dto.HolidayDTO;
+import com.softarc.eternal.holiday.exception.HolidayNotFoundException;
 import com.softarc.eternal.holiday.service.HolidayService;
 import io.smallrye.common.constraint.NotNull;
 import jakarta.ws.rs.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @Path("/api/holidays")
 public class HolidayResource {
@@ -32,6 +34,7 @@ public class HolidayResource {
     @PUT
     @Path("/{id}")
     public HolidayDTO updateHoliday(@PathParam("id")Long id, @NotNull HolidayDTO holidayDTO){
+        var holiday = Optional.ofNullable(holidayService.findById(id)).orElseThrow(HolidayNotFoundException::new);
         return holidayService.update(holidayDTO);
     }
 

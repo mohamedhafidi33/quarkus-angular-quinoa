@@ -9,6 +9,7 @@ import com.softarc.eternal.holiday.mapper.HolidaysMapper;
 import com.softarc.eternal.holiday.repository.HolidayRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @ApplicationScoped
 public class HolidayService {
@@ -37,7 +38,7 @@ public class HolidayService {
 
     @Transactional
     public HolidayDTO update(HolidayDTO holidayDTO) {
-        var holiday = holidayRepository.findById(holidayDTO.id());
+        var holiday = Optional.ofNullable(holidayRepository.findById(holidayDTO.id())).orElseThrow(HolidayNotFoundException::new);
         holiday.setName(holidayDTO.name());
         holiday.setDescription(holidayDTO.description());
         holidayRepository.persist(holiday);
