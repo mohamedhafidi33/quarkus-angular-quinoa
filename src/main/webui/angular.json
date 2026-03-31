@@ -13,6 +13,9 @@
         "build": {
           "builder": "@angular/build:application",
           "options": {
+            "security": {
+              "allowedHosts": ["localhost", "127.0.0.1", "0.0.0.0"]
+            },
             "browser": "src/main.ts",
             "tsConfig": "tsconfig.app.json",
             "assets": [
@@ -56,6 +59,9 @@
         },
         "serve": {
           "builder": "@angular/build:dev-server",
+          "options": {
+            "allowedHosts": ["localhost", "127.0.0.1", "0.0.0.0"]
+          },
           "configurations": {
             "production": {
               "buildTarget": "holiday:build:production"
