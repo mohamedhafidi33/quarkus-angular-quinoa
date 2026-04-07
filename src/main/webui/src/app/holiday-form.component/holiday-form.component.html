@@ -1,1 +1,23 @@
 <p>holiday-form.component works!</p>
+<form [formGroup]="holidayForm" (ngSubmit)="onSubmit()">
+
+  <div>
+    <label>Name</label>
+    <input type="text" formControlName="name">
+  </div>
+
+  <div>
+    <label>Description</label>
+    <textarea formControlName="description"></textarea>
+  </div>
+
+  <div>
+    <label>
+      <input type="checkbox" formControlName="coverPath">
+      Has Cover
+    </label>
+  </div>
+
+  <button type="submit">Save</button>
+
+</form>
