@@ -1,23 +1,28 @@
 <p>holiday-form.component works!</p>
 <form [formGroup]="holidayForm" (ngSubmit)="onSubmit()">
 
-  <div>
-    <label>Name</label>
-    <input type="text" formControlName="name">
-  </div>
+  <mat-form-field appearance="outline">
+    <mat-label>Name</mat-label>
+    <input matInput formControlName="name">
+  </mat-form-field>
 
-  <div>
-    <label>Description</label>
-    <textarea formControlName="description"></textarea>
-  </div>
+  <br><br>
 
-  <div>
-    <label>
-      <input type="checkbox" formControlName="coverPath">
-      Has Cover
-    </label>
-  </div>
+  <mat-form-field appearance="outline">
+    <mat-label>Description</mat-label>
+    <textarea matInput formControlName="description"></textarea>
+  </mat-form-field>
 
-  <button type="submit">Save</button>
+  <br><br>
+
+  <mat-checkbox formControlName="coverPath">
+    Has Cover
+  </mat-checkbox>
+
+  <br><br>
+
+  <button mat-raised-button color="primary" type="submit">
+    Save
+  </button>
 
 </form>
