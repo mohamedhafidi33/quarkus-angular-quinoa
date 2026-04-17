@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { HolidayDTO, HolidayResourceService } from '../../../api';
 import { MatInputModule } from '@angular/material/input';
@@ -22,7 +23,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 export class HolidayFormComponent implements OnInit{
   holidayForm!: FormGroup;
 
-  constructor(private fb: FormBuilder, private holidayResource: HolidayResourceService) {}
+  constructor(private fb: FormBuilder, private holidayResource: HolidayResourceService, private router: Router) {}
 
   ngOnInit(): void {
     this.holidayForm = this.fb.group({
@@ -35,7 +36,10 @@ export class HolidayFormComponent implements OnInit{
 
   onSubmit(): void {
     const formValue: HolidayDTO = this.holidayForm.value;
-    this.holidayResource.apiHolidaysPost(formValue);
-    console.log(formValue);
+    this.holidayResource.apiHolidaysPost(formValue).subscribe({
+      next: (res) => console.log('SUCCESS', res),
+      error: (err) => console.error('ERROR', err)
+    });
+    this.router.navigate(['/holidays/']);
   }
 }

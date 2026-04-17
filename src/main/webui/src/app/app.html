@@ -1,11 +1,19 @@
-<header style="padding: 1rem; background-color: #f0f0f0; margin-bottom: 9rem;">
-  <h1>Company Holiday Manager</h1>
-  <nav>
-    <a routerLink="/holidays">View Holidays</a>
-    <a routerLink="/addHoliday">Add Holiday</a>
-  </nav>
-</header>
+<mat-toolbar color="primary">
+  <span>Holiday Manager</span>
 
-<main style="padding: 1rem;">
+  <span class="spacer"></span>
+
+  <a mat-button routerLink="/holidays">
+    <mat-icon>list</mat-icon>
+    Holidays
+  </a>
+
+  <a mat-button routerLink="/addHoliday">
+    <mat-icon>add</mat-icon>
+    Add
+  </a>
+</mat-toolbar>
+
+<div class="content">
   <router-outlet></router-outlet>
-</main>
+</div>
