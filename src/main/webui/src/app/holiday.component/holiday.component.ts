@@ -39,7 +39,6 @@ export class HolidayComponent implements OnInit {
   ngOnInit() {
     this.holidayService.apiHolidaysGet().subscribe(data => {
       this.dataSource = data;
-      console.log(data.length);
     });
   }
   displayedColumns: string[] = ['name', 'description', 'coverPath'];
