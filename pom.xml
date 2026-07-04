@@ -102,6 +102,32 @@
                 <extensions>true</extensions>
             </plugin>
             <plugin>
+                <artifactId>maven-clean-plugin</artifactId>
+                <configuration>
+                    <filesets>
+                        <fileset>
+                            <directory>src/main/webui</directory>
+                            <includes>
+                                <include>openapi.json</include>
+                                <include>openapi.yaml</include>
+                            </includes>
+                            <excludes>
+                            </excludes>
+                            <followSymlinks>false</followSymlinks>
+                        </fileset>
+                        <fileset>
+                            <directory>src/main/webui/node_modules</directory>
+                            <includes>
+                                <include>**</include>
+                            </includes>
+                            <excludes>
+                            </excludes>
+                            <followSymlinks>false</followSymlinks>
+                        </fileset>
+                    </filesets>
+                </configuration>
+            </plugin>
+            <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${compiler-plugin.version}</version>
                 <configuration>
