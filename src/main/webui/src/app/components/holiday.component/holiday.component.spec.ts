@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HolidayComponent } from './holiday.component';
-import {HolidayResourceService} from '../../../api';
+import { HolidayDTO, HolidayResourceService } from '../../../../api';
 import {of} from 'rxjs';
 
 describe('HolidayComponent', () => {
@@ -10,9 +10,15 @@ describe('HolidayComponent', () => {
   let holidayService: {
     apiHolidaysGet: jest.Mock
   }
+  let holiday: HolidayDTO = {
+    'id': 1,
+    'name': 'Aachen',
+    'description': 'coole Stadt',
+  };
+
   beforeEach(async () => {
     holidayService = {
-      apiHolidaysGet: jest.fn().mockReturnValue(of([{}]))
+      apiHolidaysGet: jest.fn().mockReturnValue(of([holiday]))
     }
     await TestBed.configureTestingModule({
       imports: [HolidayComponent],
@@ -30,5 +36,9 @@ describe('HolidayComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should ngOnInit', () => {
+    expect(component.dataSource).toContain(holiday);
   });
 });

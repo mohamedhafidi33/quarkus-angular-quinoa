@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HolidayFormComponent } from './holiday-form.component';
-import { HolidayResourceService } from '../../../api';
+import { HolidayResourceService } from '../../../../api';
 import { of } from 'rxjs';
 import { Router } from '@angular/router';
 
@@ -41,5 +41,11 @@ describe('HolidayFormComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should call apiHolidaysPost onSubmit', () => {
+    component.onSubmit();
+    expect(holidayResourceService.apiHolidaysPost).toHaveBeenCalled();
+    expect(holidayResourceService.apiHolidaysPost).toHaveBeenCalledTimes(1);
   });
 });

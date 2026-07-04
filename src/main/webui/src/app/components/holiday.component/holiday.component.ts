@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {HolidayDTO, HolidayResourceService} from '../../../api';
+import { HolidayDTO, HolidayResourceService } from '../../../../api';
 import {
   MatCell, MatCellDef,
   MatColumnDef,
