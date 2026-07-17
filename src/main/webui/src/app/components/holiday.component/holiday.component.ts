@@ -1,5 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, inject, OnInit, signal, WritableSignal} from '@angular/core';
 import { HolidayDTO, HolidayResourceService } from '../../../../api';
+import { Router } from '@angular/router';
 import {
   MatCell, MatCellDef,
   MatColumnDef,
@@ -31,15 +32,20 @@ import {MatButton} from '@angular/material/button';
   styleUrl: './holiday.component.css',
 })
 export class HolidayComponent implements OnInit {
-  holidays: HolidayDTO[] = [];
-  dataSource: HolidayDTO[] = [];
+  holidays: WritableSignal<HolidayDTO[]> = signal([]);
+  dataSource: WritableSignal<HolidayDTO[]> = signal([]);
 
-  constructor(private holidayService: HolidayResourceService) {}
+  holidayService = inject(HolidayResourceService);
+  router = inject(Router);
 
   ngOnInit() {
     this.holidayService.apiHolidaysGet().subscribe(data => {
-      this.dataSource = data;
+      this.dataSource.set(data);
     });
   }
-  displayedColumns: string[] = ['name', 'description', 'coverPath'];
+  displayedColumns: string[] = ['name', 'description', 'coverPath','actions'];
+
+  protected editHoliday(element: HolidayDTO) {
+    this.router.navigate(['/editholiday/']);
+  }
 }
